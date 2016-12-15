@@ -49,7 +49,8 @@ else if (cmd === 'create') {
       console.error(`Usage: ${node} ${file} ${cmd} AGE KIND NAME`);
       process.exit(1);
     }
-
+// this is shorthand object literal...it uses variable name and
+// automatically makes it the key in the object
     const pet = { age, kind, name };
 
     pets.push(pet);
