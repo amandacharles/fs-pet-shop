@@ -90,7 +90,7 @@ app.get('/pets/:id', (req, res) => {
   });
 });
 
-// to update an existing pet's record
+// update an existing pet's record
 
 app.patch('/pets/:id', (req, res) => {
   fs.readFile(petsPath, 'utf8', (readErr, petsJSON) => {
@@ -116,7 +116,7 @@ app.patch('/pets/:id', (req, res) => {
     if (kind) {
       pets[id].kind = kind;
     }
-    if (age && (!Number.isNaN(age))) {
+    if (!Number.isNaN(age)) {
       pets[id].age = age;
     }
 
@@ -157,10 +157,11 @@ app.delete('/pets/:id', (req, res) => {
 
     fs.writeFile(petsPath, newPetsJSON, (writeErr) => {
       if (writeErr) {
-      console.error(writeErr.stack);
-      return res.sendStatus(500);
-     }
-    }); 
+        console.error(writeErr.stack);
+
+        return res.sendStatus(500);
+      }
+    });
 
     res.send(pet);
   });
